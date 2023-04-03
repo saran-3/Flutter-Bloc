@@ -28,7 +28,8 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
                 id: e['id'],
                 name: e['name'],
                 description: e['description'],
-                price: e['price']))
+                price: e['price'],
+                imageUrl: e['imageURL']))
             .toList()));
   }
 

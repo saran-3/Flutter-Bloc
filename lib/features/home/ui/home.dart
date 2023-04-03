@@ -1,5 +1,6 @@
 import 'package:bloc_prac_akshid/features/cart/ui/cart.dart';
 import 'package:bloc_prac_akshid/features/home/bloc/home_bloc.dart';
+import 'package:bloc_prac_akshid/features/home/ui/product_tile_widget.dart';
 import 'package:bloc_prac_akshid/features/wishlist/ui/wishlist.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -46,6 +47,7 @@ class _HomeState extends State<Home> {
             );
 
           case HomeLoadedSuccessState:
+            final successState = state as HomeLoadedSuccessState;
             return Scaffold(
               appBar: AppBar(
                 backgroundColor: Colors.teal,
@@ -64,6 +66,13 @@ class _HomeState extends State<Home> {
                 ],
                 centerTitle: true,
               ),
+              body: ListView.builder(
+                itemCount: successState.products.length,
+                itemBuilder: ((context, index) {
+                return ProductTileWidget(
+                  productDataModel: successState.products[index],
+                );
+              })),
             );
 
           case HomeErrorState:
@@ -72,7 +81,7 @@ class _HomeState extends State<Home> {
             );
 
           default:
-            return SizedBox(); 
+            return SizedBox();
         }
       },
     );
